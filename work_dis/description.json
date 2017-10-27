@@ -1,0 +1,18 @@
+{
+  "first-freight": {
+    "name": "First Freight CRM",
+    "description": "An email campaign software that could integrate into existing First Freight CRM software",
+    "users": "Business development professionals",
+    "purpose": "Enable user to create effective email marketing campaign",
+    "process": "Agile scrum",
+    "role": "UI engineering, UX / UI Design"
+  },
+  "gemini": {
+    "name": "Gemini",
+    "description": "A smart bra that monitors breast tissue, nearby lymphatic and cardiovascular systems for signs of cancer",
+    "users": "Women with early stage cancer or higher chance of developing cancer",
+    "purpose": "Enable early cancer detection",
+    "process": "Material research > hardware design > product design > app design",
+    "role": "UX / UI Design"
+  }
+}
