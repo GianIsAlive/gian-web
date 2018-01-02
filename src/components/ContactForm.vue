@@ -1,6 +1,6 @@
 <template>
-  <div class="form-container">
-    <form action="post" class="contact-form">
+  <div v-if="formShow === true" class="form-container">
+    <form v-if="submitForm === false" class="contact-form">
       <h3>Let's get coffeeeeeeeeeeeeee:</h3>
       <p v-if="validContact.name === false">Invalid name</p>
       <input
@@ -27,8 +27,9 @@
         placeholder="Message" cols="30" rows="8"
       ></textarea>
       <button type="button" class="submit-form" v-on:click="sendEmail(contact)">Submit</button>
+      <button type="button" v-on:click="showEmail()" class="show-email">{{myEmail}}</button>
     </form>
-    <button v-on:click="showEmail()" class="show-email">{{myEmail}}</button>
+    <p v-if="submitForm === true">{{msgAfterSubmit}}</p>
   </div>
 </template>
 
@@ -50,12 +51,15 @@
       message: null,
     },
     myEmail: 'I prefer the actual email address',
+    submitForm: false,
+    msgAfterSubmit: '',
   };
   export default {
     name: 'contact-form',
     data () {
       return data;
     },
+    props: ['formShow'],
     methods: {
       validateName: function () {
         const name = data.contact.name.split(' ').join('');
@@ -75,11 +79,11 @@
         return data.validContact.name && data.validContact.subject && data.validContact.email && data.validContact.message && true;
       },
       sendEmail: function () {
-        console.log(this.validateForm());
         if (this.validateForm() === true) {
           axios.post('/contact', data.contact)
             .then((response) => {
-              console.log('This is response: ', response);
+              data.msgAfterSubmit = response.data;
+              data.submitForm = true;
             });
         }
       },
@@ -128,6 +132,7 @@
     padding-top: 1.5%;
   }
   .submit-form {
+    display: block;
     margin-bottom: 0 !important;
   }
   .show-email {

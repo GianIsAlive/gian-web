@@ -39,12 +39,11 @@ main {
 	max-width: 1440px;
 }
 
-h1 {
+h1, h1 a {
 	font-size: 1.8rem;
 	letter-spacing: 2.4px;
 	color: $primary-font-color;
 }
-
 button, input, textarea, h2, h3, h4, li, a, p {
 	font-family: $secondary-font;
 	font-size: 1.2rem;

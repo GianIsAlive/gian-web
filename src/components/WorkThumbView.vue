@@ -1,10 +1,14 @@
 <template>
   <section class="my-work">
-    <WorkView v-if="showWork === true" v-bind:name="workName"></WorkView>
+    <!-- <WorkView v-if="showWork === true" v-bind:name="workName"></WorkView> -->
+    <router-view></router-view>
     {{getThumbNails}}
     <div class="thumbnail-container" :key="img.id" v-for="img in imageSources">
       <div class="overlay">
-        <button class="view-work" v-on:click="getWorkName(img.name)">View</button>
+          <router-link
+            class="view-work-btn"
+            :to="'work/' + getWorkName(img.name)">View</router-link>
+        <!-- <button class="view-work" v-on:click="getWorkName(img.name)">View</button> -->
       </div>
       <img :src="img.url" :alt="img.name">
     </div>
@@ -14,28 +18,26 @@
 <script>
   import Vue from 'vue';
   import axios from 'axios';
-  import WorkView from './WorkView.vue';
 
   let data = {
     imageSources: [],
-    showWork: false,
     workName: null,
   };
+
   export default {
     name: 'work-view',
     data () {
       return data;
     },
-    components: { WorkView },
     methods: {
-      getWorkName: function (name) {
-        data.showWork = true;
-        data.workName = name.split('.')[0];
+      getWorkName (name) {
         window.scrollTo(0, 0);
+        return name.split('.')[0];
       }
     },
     computed: {
-      getThumbNails: function () {
+      getThumbNails () {
+        if (data.imageSources.length !== 0) return;
         axios.get('/thumb')
           .then(function (response) {
             response.data.forEach(d => {
@@ -54,6 +56,7 @@
 <style>
   .my-work {
     width: 100%;
+    margin-bottom: 5%;
   }
   .my-work img {
     width: 100%;
@@ -65,12 +68,15 @@
     width: 50%;
     transition: all ease 0.8s;
   }
-  .thumbnail-container .view-work {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translateX(-50%) !important;
-    margin: 0 !important;
+  .view-work-btn {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding-top: 25%;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 1.0rem;
+    font-weight: 600;
     z-index: 1;
   }
   .thumbnail-container .overlay {
@@ -82,9 +88,6 @@
     height: 100%;
     background-color: rgba(95, 190, 207, 0.4);
     z-index: 0;
-  }
-  .overlay .view-work {
-    transition: none;
   }
   .thumbnail-container:hover .overlay {
     visibility: visible;

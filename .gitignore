@@ -1,2 +1,6 @@
 .DS_Store
+node_modules/
+.gitignore
+.elasticbeanstalk/
+webpack.config.js
 yarn.lock

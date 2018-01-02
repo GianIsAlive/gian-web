@@ -1,5 +1,5 @@
 <template>
-  <div v-if="showWork === true" class="work-container">
+  <div class="work-container">
     {{getWork}}
     <div v-if="projectDescription !== null" class="work-description">
       <h3>{{projectDescription.name}}</h3>
@@ -18,31 +18,27 @@
 </template>
 
 <script>
-  import Vue from 'vue';
   import axios from 'axios';
+
   let data = {
     workName: null,
     imgUrls: [],
-    showWork: true,
     projectDescription: null,
   };
   export default {
     name: 'work-view',
-    data: function () {
+    data () {
       return data;
     },
-    props: ['name'],
     computed: {
-      getWork: function () {
-        data.workName = this.name;
-        axios.get(`/work/${data.workName}`)
+      getWork () {
+        data.workName = window.location.pathname;
+        axios.get(data.workName)
           .then((response) => {
-            data.showWork = true;
             data.imgUrls = response.data.files.map((file) => {
-              return `${window.location.href}work/${data.workName}/${file}`;
+              return `${window.location.href}/${file}`;
             });
             data.projectDescription = response.data.description;
-            console.log(response.data);
           });
       },
     },
@@ -51,7 +47,14 @@
 
 <style>
   .work-container {
+    margin: 5% 0;
     width: 100%;
+  }
+  .work-container img {
+    width: 100%;
+  }
+  .work-container img:last-child {
+    margin-bottom: 0;
   }
   .work-container img, .work-description {
     margin-bottom: 2%;

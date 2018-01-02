@@ -1,18 +1,26 @@
 <template>
   <header class="main-header">
-    <h1 class="my-name">Gian</h1>
+    <h1 class="my-name"><a href="/">Gian</a></h1>
     <nav class="top-nav">
       <ul>
-        <li><a
-          v-on:click="switchActiveA()"
-          v-bind:class="{ active: isActive.work }" href="/"
-        >Work</a></li>
-        <li
-          v-bind:class="{ active: isActive.conversations }"
-        ><a href="/conversations">Conversations</a></li>
-        <li
-          v-bind:class="{ active: isActive.about }"
-        ><a href="/about">About</a></li>
+        <li>
+          <router-link
+            to="/"
+            v-on:click.native="switchActiveClass('work')"
+            v-bind:class="{ active: isActive.work }">Work</router-link>
+        </li>
+        <li>
+          <router-link 
+            to="conversations"
+            v-on:click.native="switchActiveClass('conversations')"
+            v-bind:class="{ active: isActive.conversations }">Conversations</router-link>
+        </li>
+        <li>
+          <router-link
+            to="about"
+            v-on:click.native="switchActiveClass('about')"
+            v-bind:class="{ active: isActive.about }">About</router-link>
+        </li>
       </ul>
     </nav>
   </header>
@@ -22,7 +30,7 @@
 let data = {
   listItems: ['Work', 'Conversations', 'About'],
   isActive: {
-    work: true,
+    work: false,
     conversations: false,
     about: false,
   },
@@ -33,8 +41,12 @@ export default {
     return data;
   },
   methods: {
-    switchActiveA () {
-      console.log('hellooo');
+    switchActiveClass (className) {
+      let isActiveProps = Object.keys(data.isActive);
+      isActiveProps.forEach((prop) => {
+        data.isActive[prop] = false;
+      });
+      data.isActive[className] = true;
     }
   },
 }
@@ -43,7 +55,7 @@ export default {
 <style>
   .main-header {
     position: relative;
-    top: 10%;
+    margin-top: 10%;
   }
   .my-name, .top-nav {
     display: inline-block;
@@ -72,7 +84,6 @@ export default {
     margin-right: 0;
   }
   .top-nav a:hover {
-    cursor: crosshair;
     color: #8B8989;
     border-bottom: 1px solid #8B8989;
   }

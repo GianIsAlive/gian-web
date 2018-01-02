@@ -3,7 +3,7 @@
     <article class="cta-intro">
       <h2>{{callToAction.message}}</h2>
       <button v-on:click="showContactForm()">{{callToAction.button}}</button>
-      <ContactForm  v-if="formShow === true"></ContactForm>
+      <ContactForm :formShow="formShow"></ContactForm>
       <WorkThumbView></WorkThumbView>
     </article>
   </section>
@@ -42,7 +42,7 @@
 <style>
   .landing {
     position: relative;
-    top: 15%;
+    margin-top: 5%;
   }
   .cta-intro {
     position: relative;

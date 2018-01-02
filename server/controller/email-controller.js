@@ -3,8 +3,8 @@ var mailgun = require('mailgun-js');
 const emailController = {};
 
 emailController.send = function(req, res, next) {
-  var api_key = 'key-6bf7a4d126bb3bfcd4c386a44bad6ba3';
-  var domain = 'sandbox9dcbbea458824c0ca640da14edf7cbcd.mailgun.org';
+  var api_key = '';
+  var domain = '';
   var mg = mailgun({apiKey: api_key, domain: domain});
   var data = {
     from: req.body.email,

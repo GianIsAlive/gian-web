@@ -5,7 +5,7 @@
     "users": "Business development professionals",
     "purpose": "Enable user to create effective email marketing campaign",
     "process": "Agile scrum",
-    "role": "UI engineering, UX / UI Design"
+    "role": "UI engineer, UX / UI Designer"
   },
   "gemini": {
     "name": "Gemini",
@@ -13,6 +13,14 @@
     "users": "Women with early stage cancer or higher chance of developing cancer",
     "purpose": "Enable early cancer detection",
     "process": "Material research > hardware design > product design > app design",
-    "role": "UX / UI Design"
+    "role": "UX / UI Designer"
+  },
+  "beta-attack": {
+    "name": "Beta - Attack",
+    "description": "Check web application vulnerability from standard XSS and SQL injection attack with one click",
+    "users": "Developers working on small to mid scale applications",
+    "purpose": "Allow developers to check vulnerability before they deploy",
+    "process": "Agile Scrum",
+    "role": "Full Stack JavaScript Developer, UX / UI designer"
   }
 }

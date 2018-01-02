@@ -71,7 +71,7 @@ main {
   padding: 0 12%;
   max-width: 1440px; }
 
-h1 {
+h1, h1 a {
   font-size: 1.8rem;
   letter-spacing: 2.4px;
   color: #444343; }
@@ -82,3 +82,5 @@ button, input, textarea, h2, h3, h4, li, a, p {
   letter-spacing: 1.4px;
   text-decoration: none;
   color: #444343; }
+
+/*# sourceMappingURL=style.css.map*/
